@@ -100,7 +100,7 @@ public class FileManager {
 			for (URL lurl : ((URLClassLoader)pClassLoader).getURLs()) {
 				try {
 					String ls = lurl.toString();
-					if (ls.endsWith("/bin/") || ls.indexOf("/mods/") > -1) {
+					if (ls.endsWith("/bin/") || ls.indexOf("/out/production/") != -1 || ls.indexOf("/mods/") > -1) {
 						llist.add(new File(lurl.toURI()));
 					}
 				} catch (Exception e) {

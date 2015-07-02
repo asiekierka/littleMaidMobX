@@ -1,5 +1,8 @@
 package mmmlibx.lib;
 
+import org.apache.commons.io.FilenameUtils;
+import org.apache.http.client.utils.URIUtils;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.lang.reflect.Modifier;
@@ -9,57 +12,43 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 public abstract class MMM_ManagerBase {
-
 	protected abstract String getPreFix();
 	/**
 	 * 追加処理の本体
 	 */
 	protected abstract boolean append(Class pclass);
 
-
-	protected void load() {
-		// ロード
-		
-		// 開発用
-		Package lpackage = MMMLib.class.getPackage();
-		String ls = "";
-		if (lpackage != null) {
-			ls = MMMLib.class.getPackage().getName().replace('.', File.separatorChar);
-		}
-		File lf1 = new File(FileManager.dirMods, ls); // TODO ★
-//		File lf1 = new File(FileManager.minecraftJar, ls); // TODO ★
-		
-		if (lf1.isDirectory()) {
-			// ディレクトリの解析
-			decodeDirectory(lf1);
-		} else {
-			// Zipの解析
-			decodeZip(lf1);
-		}
-		
-		
-		// mods
-		for (Entry<String, List<File>> le : FileManager.fileList.entrySet()) {
-			for (File lf : le.getValue()) {
-				if (lf.isDirectory()) {
-					// ディレクトリの解析
-					decodeDirectory(lf);
-				} else {
-					// Zipの解析
-					decodeZip(lf);
-				}
+	private void loadFile(File f) {
+		if (f.exists() && f.canRead()) {
+			if (f.isDirectory()) {
+				decodeDirectory(f, f);
+			} else {
+				decodeZip(f);
 			}
 		}
 	}
 
-	private void decodeDirectory(File pfile) {
+	protected void load() {
+		for (Entry<String, List<File>> le : FileManager.fileList.entrySet()) {
+			for (File lf : le.getValue()) {
+				loadFile(lf);
+			}
+		}
+	}
+
+	private void decodeDirectory(File baseFile, File pfile) {
 		// ディレクトリ内のクラスを検索
+		String basePath = baseFile.getAbsolutePath();
 		for (File lf : pfile.listFiles()) {
 			if (lf.isFile()) {
 				String lname = lf.getName();
 				if (lname.indexOf(getPreFix()) >= 0 && lname.endsWith(".class")) {
-					// 対象クラスファイルなのでロード
-					loadClass(lf.getName());
+					System.out.println(String.format("AAA %s %s", basePath, lf.getAbsolutePath()));
+					String relativePath = lf.getAbsolutePath().substring(basePath.length());
+					while (relativePath.startsWith("/") || relativePath.startsWith("\\")) {
+						relativePath = relativePath.substring(1);
+					}
+					loadClass(relativePath);
 				}
 			}
 		}
