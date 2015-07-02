@@ -159,7 +159,9 @@ public class FileManager {
 		// ファイル・ディレクトリを検索
 		try {
 			List<File> files = new ArrayList<File>();
-			files.addAll(Arrays.asList(dirMods.listFiles()));
+			if (dirMods.isDirectory()) {
+				files.addAll(Arrays.asList(dirMods.listFiles()));
+			}
 
 			// Hook (for development)
 			File devMods = new File("../out/production/");
@@ -167,7 +169,7 @@ public class FileManager {
 				files.addAll(Arrays.asList(devMods.listFiles()));
 			}
 
-			if (dirMods.isDirectory()) {
+			if (files.size() > 0) {
 				MMMLib.Debug("getModFile-get:%d.", files.size());
 				for (File t : files) {
 					if (t.getName().indexOf(pprefix) != -1) {
