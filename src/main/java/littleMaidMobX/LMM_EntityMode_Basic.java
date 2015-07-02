@@ -185,7 +185,6 @@ public class LMM_EntityMode_Basic extends LMM_EntityModeBlockBase {
 	public boolean overlooksBlock(int pMode) {
 		// チェストカートの検索
 		List<Entity> list = owner.worldObj.getEntitiesWithinAABB(IInventory.class, owner.boundingBox.expand(8D, 2D, 8D));
-		double cartl = 256D;
 		for (Entity lentity : list) {
 			if (!fusedTiles.contains(lentity)) {
 				if (((IInventory)lentity).getSizeInventory() < 18) {

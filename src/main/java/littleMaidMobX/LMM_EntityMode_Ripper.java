@@ -105,9 +105,9 @@ public class LMM_EntityMode_Ripper extends LMM_EntityModeBase {
 		EntityAITasks[] ltasks3 = new EntityAITasks[2];
 		ltasks3[0] = pDefaultMove;
 		ltasks3[1] = new EntityAITasks(owner.aiProfiler);
-		ltasks2[1].addTask(1, new LMM_EntityAINearestAttackableTarget(owner, EntityLivingBase.class, 0, true));
+		ltasks3[1].addTask(1, new LMM_EntityAINearestAttackableTarget(owner, EntityLivingBase.class, 0, true));
 
-		owner.addMaidMode(ltasks2, "Detonator", mmode_Detonator);
+		owner.addMaidMode(ltasks3, "Detonator", mmode_Detonator);
 
 
 	}

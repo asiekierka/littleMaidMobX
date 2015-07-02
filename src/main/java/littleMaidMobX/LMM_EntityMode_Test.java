@@ -8,7 +8,6 @@ import wrapper.W_Common;
 import mmmlibx.lib.MMM_TextureBox;
 import mmmlibx.lib.MMM_TextureBoxServer;
 import mmmlibx.lib.MMM_TextureManager;
-import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandTime;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;

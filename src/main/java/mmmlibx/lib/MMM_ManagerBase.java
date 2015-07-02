@@ -1,8 +1,5 @@
 package mmmlibx.lib;
 
-import org.apache.commons.io.FilenameUtils;
-import org.apache.http.client.utils.URIUtils;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.lang.reflect.Modifier;

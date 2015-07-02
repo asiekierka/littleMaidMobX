@@ -17,14 +17,7 @@ import java.util.Properties;
  * cfg_commentは予約変数String[]型でコメントを記述する。<br>
  */
 public class MMM_Config {
-
 	public static File configDir;
-	
-	public static String[] cfg_comment = {"test code", "can br ?" };
-	public static int cfg_testi = 1;
-	public static byte cfg_testb = 2;
-	public static String cfg_tests = "test string";
-
 
 	/**
 	 * 初期化。

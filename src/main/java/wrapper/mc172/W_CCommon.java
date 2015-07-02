@@ -4,7 +4,6 @@ import net.minecraft.command.*;
 import net.minecraft.entity.IEntityOwnable;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.stats.StatisticsFile;
 import wrapper.W_ICommon;
 

@@ -1,6 +1,5 @@
 package littleMaidMobX;
 
-import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;

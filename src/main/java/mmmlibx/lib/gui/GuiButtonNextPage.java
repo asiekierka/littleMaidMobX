@@ -2,7 +2,6 @@ package mmmlibx.lib.gui;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiScreenBook;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;

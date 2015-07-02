@@ -52,7 +52,6 @@ public class LMM_EntityModeManager extends MMM_ManagerBase {
 
 			return true;
 		} catch (Exception e) {
-		} catch (Error e) {
 		}
 
 		return false;

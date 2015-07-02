@@ -126,12 +126,7 @@ public class LMM_EntityMode_Fencer extends LMM_EntityModeBase {
 				}
 				
 				// 攻撃力な高いものを記憶する
-				lld = 1;
-				try {
-					lld = MMM_Helper.getAttackVSEntity(litemstack);
-				}
-				catch (Exception e) {
-				}
+				lld = MMM_Helper.getAttackVSEntity(litemstack);
 				if (lld > ld) {
 					ll = li;
 					ld = lld;

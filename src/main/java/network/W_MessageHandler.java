@@ -1,7 +1,6 @@
 package network;
 
 import littleMaidMobX.LMM_LittleMaidMobX;
-import littleMaidMobX.LMM_ProxyClient;
 import littleMaidMobX.LMM_Net;
 import mmmlibx.lib.MMMLib;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;

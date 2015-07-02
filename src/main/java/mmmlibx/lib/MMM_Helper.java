@@ -672,8 +672,12 @@ public class MMM_Helper {
 	 * @return
 	 */
 	public static double getAttackVSEntity(ItemStack pItemStack) {
-		AttributeModifier lam = (AttributeModifier)pItemStack.getAttributeModifiers().get(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName());
-		return lam == null ? 0 : lam.getAmount();
+		if (pItemStack.getAttributeModifiers() != null) {
+			AttributeModifier lam = (AttributeModifier) pItemStack.getAttributeModifiers().get(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName());
+			return lam == null ? 0 : lam.getAmount();
+		} else {
+			return 0;
+		}
 	}
 
 	public static String getRelativePathSimple(File basePath, File path) {

@@ -48,8 +48,11 @@ public class LMM_SoundManager {
 		// 初期設定
 		soundDir = new File(FileManager.dirMods, "/littleMaidMobX/");
 		if (!getSoundDir().exists() || !getSoundDir().isDirectory()) {
-			getSoundDir().mkdirs();
-			LMM_LittleMaidMobX.Debug("Create SoundDir: %s", getSoundDir().toString());
+			if (getSoundDir().mkdirs()) {
+				LMM_LittleMaidMobX.Debug("Create SoundDir: %s", getSoundDir().toString());
+			} else {
+				LMM_LittleMaidMobX.Debug("Failed to Create SoundDir: %s!", getSoundDir().toString());
+			}
 		} else {
 			LMM_LittleMaidMobX.Debug("SoundDir: %s", getSoundDir().toString());
 		}
