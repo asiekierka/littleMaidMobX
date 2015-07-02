@@ -200,18 +200,18 @@ public class LMM_EntityLittleMaid extends EntityTameable implements ITextureEnti
 	public Profiler aiProfiler;
 
 
-	public LMM_EntityLittleMaid(World par1World) {
-		super(par1World);
+	public LMM_EntityLittleMaid(World world) {
+		super(world);
 		// 初期設定
 		maidInventory = new LMM_InventoryLittleMaid(this);
-		if (par1World != null ) {
-			if(par1World.isRemote)
+		if (world != null ) {
+			if(world.isRemote)
 			{
-				maidAvatar = new LMM_EntityLittleMaidAvatar(par1World, this);
+				maidAvatar = new LMM_EntityLittleMaidAvatar(world, this);
 			}
 			else
 			{
-				maidAvatar = new LMM_EntityLittleMaidAvatarMP(par1World, this);
+				maidAvatar = new LMM_EntityLittleMaidAvatarMP(world, this);
 			}
 		}
 		mstatOpenInventory = false;
@@ -224,12 +224,14 @@ public class LMM_EntityLittleMaid extends EntityTameable implements ITextureEnti
 		maidCaps = new LMM_EntityCaps(this);
 		
 		// 形態形成場
-		textureData = new MMM_TextureData(this, maidCaps);
-		textureData.setColor(12);
-		MMM_TextureBox ltb[] = new MMM_TextureBox[2];
-		ltb[0] = ltb[1] = MMM_TextureManager.instance.getDefaultTexture(this);
-		setTexturePackName(ltb);
-		
+		if (!world.isRemote) {
+			textureData = new MMM_TextureData(this, maidCaps);
+			textureData.setColor(12);
+			MMM_TextureBox ltb[] = new MMM_TextureBox[2];
+			ltb[0] = ltb[1] = MMM_TextureManager.instance.getDefaultTexture(this);
+			setTexturePackName(ltb);
+		}
+
 		entityIdFactor = (float)(getEntityId() * 70);
 		// 腕振り
 		mstatSwingStatus = new LMM_SwingStatus[] { new LMM_SwingStatus(), new LMM_SwingStatus()};

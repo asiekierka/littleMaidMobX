@@ -12,7 +12,6 @@ public class LMM_EntityMode_Cooking extends LMM_EntityModeBlockBase {
 
 	public static final int mmode_Cooking = 0x0021;
 
-
 	public LMM_EntityMode_Cooking(LMM_EntityLittleMaid pEntity) {
 		super(pEntity);
 	}
