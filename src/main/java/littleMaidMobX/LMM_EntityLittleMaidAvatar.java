@@ -593,4 +593,9 @@ public class LMM_EntityLittleMaidAvatar extends EntityPlayer implements LMM_IEnt
 	public float W_applyPotionDamageCalculations(DamageSource par1DamageSource, float par2) {
 		return applyPotionDamageCalculations(par1DamageSource, par2);
 	}
+
+	@Override
+	public LMM_EntityLittleMaid getMaid() {
+		return avatar;
+	}
 }

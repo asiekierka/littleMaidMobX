@@ -27,4 +27,6 @@ public interface LMM_IEntityLittleMaidAvatarBase
 	public void getValue();
 
 	public boolean getIsItemReload();
+
+	public LMM_EntityLittleMaid getMaid();
 }

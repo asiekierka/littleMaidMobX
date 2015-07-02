@@ -293,6 +293,11 @@ public class LMM_EntityLittleMaidAvatarMP extends FakePlayer implements LMM_IEnt
 		return isItemReload;
 	}
 
+	@Override
+	public LMM_EntityLittleMaid getMaid() {
+		return avatar;
+	}
+
 	public void clearItemInUse(int pIndex) {
 		isItemTrigger = false;
 		isItemReload = isItemPreReload = false;

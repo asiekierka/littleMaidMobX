@@ -1,11 +1,7 @@
 package littleMaidMobX;
 
-import java.lang.reflect.Field;
-import java.util.List;
-
 import mmmlibx.lib.MMM_Helper;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -172,7 +168,6 @@ public class LMM_EntityAIAttackArrow extends EntityAIBase implements LMM_IEntity
 				}
 				
 				if (litemstack != null && !(litemstack.getItem() instanceof ItemFood) && !fMaid.weaponReload) {
-					int lastentityid = worldObj.loadedEntityList.size();
 					int itemcount = litemstack.stackSize;
 					fMaid.mstatAimeBow = true;
 					getAvatarIF().getValueVectorFire(atx, aty, atz, atl);
@@ -202,7 +197,7 @@ public class LMM_EntityAIAttackArrow extends EntityAIBase implements LMM_IEntity
 						double tpz = fMaid.posZ;
 //						double tpr = Math.sqrt(atl) * 0.5D;
 						tpr = tpr * 0.25D;
-						if (fTargetSearchDir==false) {
+						if (!fTargetSearchDir) {
 							// 左回り
 							tpx += (atz / tpr);
 							tpz -= (atx / tpr);
@@ -277,47 +272,6 @@ public class LMM_EntityAIAttackArrow extends EntityAIBase implements LMM_IEntity
 						fMaid.getNextEquipItem();
 					} else {
 						fInventory.setInventoryCurrentSlotContents(litemstack);
-					}
-					
-					// 発生したEntityをチェックしてmaidAvatarEntityが居ないかを確認
-					List<Entity> newentitys = worldObj.loadedEntityList.subList(lastentityid, worldObj.loadedEntityList.size());
-					boolean shootingflag = false;
-					if (newentitys != null && newentitys.size() > 0) {
-						LMM_LittleMaidMobX.Debug(String.format("new FO entity %d", newentitys.size()));
-						for (Entity te : newentitys) {
-							if (te.isDead) {
-								shootingflag = true;
-								continue;
-							}
-							try {
-								// 飛翔体の主を置き換える
-								Field fd[] = te.getClass().getDeclaredFields();
-//                				mod_littleMaidMob.Debug(String.format("%s, %d", e.getClass().getName(), fd.length));
-								for (Field ff : fd) {
-									// 変数を検索しAvatarと同じ物を自分と置き換える
-									ff.setAccessible(true);
-									Object eo = ff.get(te);
-									if (eo != null && eo.equals(fAvatar)) {
-										ff.set(te, this.fMaid);
-										LMM_LittleMaidMobX.Debug("Replace FO Owner.");
-									}
-								}
-							}
-							catch (Exception exception) {
-								exception.printStackTrace();
-							}
-						}
-					}
-					// 既に命中していた場合の処理
-					if (shootingflag) {
-						for (Object obj : worldObj.loadedEntityList) {
-							if (obj instanceof EntityCreature && !(obj instanceof LMM_EntityLittleMaid)) {
-								EntityCreature ecr = (EntityCreature)obj;
-								if (ecr.getEntityToAttack() == fAvatar) {
-									ecr.setTarget(fMaid);
-								}
-							}
-						}
 					}
 				}
 			}
