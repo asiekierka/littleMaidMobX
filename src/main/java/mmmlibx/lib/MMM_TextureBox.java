@@ -211,35 +211,38 @@ public class MMM_TextureBox extends MMM_TextureBoxBase {
 	}
 
 	public boolean addTexture(int pIndex, String pLocation) {
-		String ls;
-		ls = "/assets/minecraft/";
+		String ls = "/assets/minecraft/";
+		ResourceLocation location;
 		if (pLocation.startsWith(ls)) {
-			pLocation = pLocation.substring(ls.length());
+			location = new ResourceLocation(pLocation.substring(ls.length()));
+		} else if (pLocation.startsWith("/mob/")) {
+			location = new ResourceLocation("mmmlibx", pLocation.substring(1));
 		} else {
-//			pLocation = "../.." + pLocation;
+			MMMLib.Debug("addTexture-Unexpected texture name: %s!", pLocation);
+			location = new ResourceLocation(pLocation);
 		}
 		boolean lflag = false;
 		switch ((pIndex & 0xfff0)) {
-		case MMM_TextureManager.tx_armor1:
-		case MMM_TextureManager.tx_armor2:
-		case MMM_TextureManager.tx_armor1light:
-		case MMM_TextureManager.tx_armor2light:
-		case MMM_TextureManager.tx_oldarmor1:
-		case MMM_TextureManager.tx_oldarmor2:
-			ls = pLocation.substring(pLocation.lastIndexOf("/") + 1, pLocation.lastIndexOf("_"));
-			Map<Integer, ResourceLocation> lmap;
-			if (armors.containsKey(ls)) {
-				lmap = armors.get(ls);
-			} else {
-				lmap = new HashMap<Integer, ResourceLocation>();
-				armors.put(ls, lmap);
-			}
-			lmap.put(pIndex, new ResourceLocation(pLocation));
-			break;
-			
-		default:
-			textures.put(pIndex, new ResourceLocation(pLocation));
-			return true;
+			case MMM_TextureManager.tx_armor1:
+			case MMM_TextureManager.tx_armor2:
+			case MMM_TextureManager.tx_armor1light:
+			case MMM_TextureManager.tx_armor2light:
+			case MMM_TextureManager.tx_oldarmor1:
+			case MMM_TextureManager.tx_oldarmor2:
+				ls = pLocation.substring(pLocation.lastIndexOf("/") + 1, pLocation.lastIndexOf("_"));
+				Map<Integer, ResourceLocation> lmap;
+				if (armors.containsKey(ls)) {
+					lmap = armors.get(ls);
+				} else {
+					lmap = new HashMap<Integer, ResourceLocation>();
+					armors.put(ls, lmap);
+				}
+				lmap.put(pIndex, location);
+				break;
+
+			default:
+				textures.put(pIndex, location);
+				return true;
 		}
 		return lflag;
 	}

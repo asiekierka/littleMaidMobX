@@ -20,6 +20,7 @@ import java.util.regex.Pattern;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
+import littleMaidMobX.LMM_OldZipTexturesLoader;
 import mmmlibx.lib.multiModel.model.mc162.*;
 import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.entity.Entity;
@@ -122,30 +123,12 @@ public class MMM_TextureManager {
 		FileManager.getModFile("mmmlibx", "littleMaidMob");
 		FileManager.getModFile("mmmlibx", "mmmlibx");
 		FileManager.getModFile("mmmlibx", "ModelMulti");
-//		FileManager.getModFile("assets", "assets");
-		
-//		FileManager.debugPrintAllFileList();
-		
+
 		addSearch("mmmlibx", "/assets/minecraft/textures/entity/ModelMulti/", "ModelMulti_");
 		addSearch("mmmlibx", "/assets/minecraft/textures/entity/littleMaid/", "ModelMulti_");
 		addSearch("mmmlibx", "/assets/minecraft/textures/entity/littleMaid/", "ModelLittleMaid_");
-//		addSearch("assets",  "/assets/minecraft/textures/entity/ModelMulti/", "ModelMulti_");
-//		addSearch("assets",  "/assets/minecraft/textures/entity/littleMaid/", "ModelMulti_");
-//		addSearch("assets",  "/assets/minecraft/textures/entity/littleMaid/", "ModelLittleMaid_");
-/*
-		// mods\MMMLib\フォルダと検索パスに追加
-		MMM_FileManager.getModFile("MMMLib", "MMMLib");
-		MMM_FileManager.getModFile("MMMLib", "ModelMulti");
-		addSearch("MMMLib", "/mob/ModelMulti/", "ModelMulti_");
-		addSearch("MMMLib", "/mob/littleMaid/", "ModelLittleMaid_");
-		addSearch("MMMLib", "/assets/minecraft/textures/entity/ModelMulti/", "ModelMulti_");
-		addSearch("MMMLib", "/assets/minecraft/textures/entity/littleMaid/", "ModelLittleMaid_");
-
-		// mods\MMMLib\フォルダと検索パスに追加
-		MMM_FileManager.getModFile("littleMaidMob", "littleMaidMob");
-		addSearch("littleMaidMob", "/mob/littleMaid/", "ModelLittleMaid_");
-		addSearch("littleMaidMob", "/assets/minecraft/textures/entity/littleMaid/", "ModelLittleMaid_");
-*/
+		addSearch("mmmlibx", "/mob/ModelMulti/", "ModelMulti_");
+		addSearch("mmmlibx", "/mob/littleMaid/", "ModelLittleMaid_");
 	}
 
 	protected String[] getSearch(String pName) {
@@ -554,6 +537,7 @@ public class MMM_TextureManager {
 					if (zipentry.getName().endsWith(".class")) {
 						addModelClass(zipentry.getName(), pSearch);
 					} else {
+						LMM_OldZipTexturesLoader.keys.put(zipentry.getName(), file);
 						addTextureName(zipentry.getName(), pSearch);
 					}
 				}
@@ -637,6 +621,7 @@ public class MMM_TextureManager {
 						int i = s.indexOf(pSearch[1]);
 						if (i > -1) {
 							// 対象はテクスチャディレクトリ
+							LMM_OldZipTexturesLoader.keys.put(s.substring(i), file);
 							addTextureName(s.substring(i), pSearch);
 //							addTextureName(s.substring(i).replace('\\', '/'));
 						}

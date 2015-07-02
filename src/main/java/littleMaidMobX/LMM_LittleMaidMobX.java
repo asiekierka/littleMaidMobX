@@ -1,9 +1,12 @@
 package littleMaidMobX;
 
+import cpw.mods.fml.common.ObfuscationReflectionHelper;
 import mmmlibx.lib.FileManager;
 import mmmlibx.lib.MMM_Config;
 import mmmlibx.lib.MMM_Helper;
 import mmmlibx.lib.MMM_TextureManager;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.IResourcePack;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -22,6 +25,8 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
+
+import java.util.List;
 
 @Mod(	modid = LMM_LittleMaidMobX.DOMAIN,
 		name  = LMM_LittleMaidMobX.DOMAIN)
@@ -190,6 +195,9 @@ public class LMM_LittleMaidMobX {
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent evt)
 	{
+		List<IResourcePack> defaultResourcePacks = ObfuscationReflectionHelper.getPrivateValue(Minecraft.class, Minecraft.getMinecraft(), "defaultResourcePacks", "field_110449_ao");
+		defaultResourcePacks.add(new LMM_OldZipTexturesLoader());
+
 		// カンマ区切りのアイテム名のリストを配列にして設定
 		// "aaa, bbb,ccc  " -> "aaa" "bbb" "ccc"
 		ignoreItemList = cfg_IgnoreItemList.trim().split("\\s*,\\s*");
