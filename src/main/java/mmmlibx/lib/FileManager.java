@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import cpw.mods.fml.relauncher.FMLInjectionData;
+import scala.actors.threadpool.Arrays;
 
 public class FileManager {
 
@@ -138,8 +139,6 @@ public class FileManager {
 		return true;
 	}
 
-
-
 	/**
 	 * MODディレクトリに含まれる対象ファイルのオブジェクトを取得。
 	 * @param pname 検索リスト名称、getFileList()で使う。
@@ -159,9 +158,18 @@ public class FileManager {
 		MMMLib.Debug("getModFile:[%s]:%s", pname, dirMods.getAbsolutePath());
 		// ファイル・ディレクトリを検索
 		try {
+			List<File> files = new ArrayList<File>();
+			files.addAll(Arrays.asList(dirMods.listFiles()));
+
+			// Hook (for development)
+			File devMods = new File("../out/production/");
+			if (devMods.exists() && devMods.isDirectory()) {
+				files.addAll(Arrays.asList(devMods.listFiles()));
+			}
+
 			if (dirMods.isDirectory()) {
-				MMMLib.Debug("getModFile-get:%d.", dirMods.list().length);
-				for (File t : dirMods.listFiles()) {
+				MMMLib.Debug("getModFile-get:%d.", files.size());
+				for (File t : files) {
 					if (t.getName().indexOf(pprefix) != -1) {
 						if (t.getName().endsWith(".zip") || t.getName().endsWith(".jar")) {
 							llist.add(t);

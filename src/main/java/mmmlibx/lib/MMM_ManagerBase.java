@@ -38,17 +38,11 @@ public abstract class MMM_ManagerBase {
 
 	private void decodeDirectory(File baseFile, File pfile) {
 		// ディレクトリ内のクラスを検索
-		String basePath = baseFile.getAbsolutePath();
 		for (File lf : pfile.listFiles()) {
 			if (lf.isFile()) {
 				String lname = lf.getName();
 				if (lname.indexOf(getPreFix()) >= 0 && lname.endsWith(".class")) {
-					System.out.println(String.format("AAA %s %s", basePath, lf.getAbsolutePath()));
-					String relativePath = lf.getAbsolutePath().substring(basePath.length());
-					while (relativePath.startsWith("/") || relativePath.startsWith("\\")) {
-						relativePath = relativePath.substring(1);
-					}
-					loadClass(relativePath);
+					loadClass(MMM_Helper.getRelativePathSimple(baseFile, lf));
 				}
 			}
 		}
@@ -84,6 +78,9 @@ public abstract class MMM_ManagerBase {
 	}
 
 	private void loadClass(String pname) {
+		if (pname == null) {
+			return;
+		}
 		String lclassname = "";
 		// 対象ファイルをクラスとしてロード
 		try {

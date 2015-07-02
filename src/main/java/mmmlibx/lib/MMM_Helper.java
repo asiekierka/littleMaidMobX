@@ -1,5 +1,6 @@
 package mmmlibx.lib;
 
+import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.HashMap;
@@ -673,6 +674,19 @@ public class MMM_Helper {
 	public static double getAttackVSEntity(ItemStack pItemStack) {
 		AttributeModifier lam = (AttributeModifier)pItemStack.getAttributeModifiers().get(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName());
 		return lam == null ? 0 : lam.getAmount();
+	}
+
+	public static String getRelativePathSimple(File basePath, File path) {
+		String relativePath = path.getAbsolutePath();
+		String basePathS = basePath.getAbsolutePath();
+		if (relativePath.indexOf(basePathS) != 0) {
+			return null;
+		}
+		relativePath = relativePath.substring(basePath.getAbsolutePath().length());
+		while (relativePath.startsWith("/") || relativePath.startsWith("\\")) {
+			relativePath = relativePath.substring(1);
+		}
+		return relativePath;
 	}
 
 }

@@ -129,17 +129,15 @@ public class LMM_ItemSpawnEgg extends Item
 
 	public static Entity spawnMaid(World par0World, int par1, double par2, double par4, double par6)
 	{
-		Entity entity = null;
+		EntityLiving entity = null;
 		try {
 			entity = new LMM_EntityLittleMaid(par0World);
-
-			EntityLiving entityliving = (EntityLiving)entity;
 			entity.setLocationAndAngles(par2, par4, par6, MathHelper.wrapAngleTo180_float(par0World.rand.nextFloat() * 360.0F), 0.0F);
-			entityliving.rotationYawHead = entityliving.rotationYaw;
-			entityliving.renderYawOffset = entityliving.rotationYaw;
-			entityliving.onSpawnWithEgg((IEntityLivingData)null);
+			entity.rotationYawHead = entity.rotationYaw;
+			entity.renderYawOffset = entity.rotationYaw;
+			entity.onSpawnWithEgg(null);
 			par0World.spawnEntityInWorld(entity);
-			entityliving.playLivingSound();
+			entity.playLivingSound();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

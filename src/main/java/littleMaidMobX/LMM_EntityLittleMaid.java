@@ -224,13 +224,11 @@ public class LMM_EntityLittleMaid extends EntityTameable implements ITextureEnti
 		maidCaps = new LMM_EntityCaps(this);
 		
 		// 形態形成場
-		if (!world.isRemote) {
-			textureData = new MMM_TextureData(this, maidCaps);
-			textureData.setColor(12);
-			MMM_TextureBox ltb[] = new MMM_TextureBox[2];
-			ltb[0] = ltb[1] = MMM_TextureManager.instance.getDefaultTexture(this);
-			setTexturePackName(ltb);
-		}
+		textureData = new MMM_TextureData(this, maidCaps);
+		textureData.setColor(12);
+		MMM_TextureBox ltb[] = new MMM_TextureBox[2];
+		ltb[0] = ltb[1] = MMM_TextureManager.instance.getDefaultTexture(this);
+		setTexturePackName(ltb);
 
 		entityIdFactor = (float)(getEntityId() * 70);
 		// 腕振り
@@ -712,8 +710,7 @@ public class LMM_EntityLittleMaid extends EntityTameable implements ITextureEnti
 
 	@Override
 	protected boolean canDespawn() {
-		// デスポーン判定
-		return LMM_LittleMaidMobX.cfg_canDespawn || super.canDespawn();
+		return this.isTamed() ? false : LMM_LittleMaidMobX.cfg_canDespawn;
 	}
 
 	@Override
@@ -726,15 +723,13 @@ public class LMM_EntityLittleMaid extends EntityTameable implements ITextureEnti
 		int lx = MathHelper.floor_double(this.posX);
 		int ly = MathHelper.floor_double(this.boundingBox.minY);
 		int lz = MathHelper.floor_double(this.posZ);
-		/*
 		// TODO:サーバー側で判定できないので意味なし?
-		MMM_TextureBox lbox = MMM_TextureManager.instance.getTextureBox(textureBox[0]);
-		if (worldObj == null || textureModel == null  
-				|| !textureBox[0].mo.getCanSpawnHere(worldObj, lx, ly, lz, this)) {
+		/* MMM_TextureBox lbox = MMM_TextureManager.instance.getTextureBox(textureData.textureBox[0]);
+		if (worldObj == null || textureData.textureModel == null
+				|| !textureData.textureBox[0].getCanSpawnHere(worldObj, lx, ly, lz, this)) {
 			mod_LMM_littleMaidMob.Debug(String.format("%s is can't spawn hear.", textureName));
 			return false;
-		}
-		*/
+		} */
 		if (LMM_LittleMaidMobX.cfg_Dominant) {
 			// ドミナント
 			return this.worldObj.checkNoEntityCollision(this.boundingBox) 

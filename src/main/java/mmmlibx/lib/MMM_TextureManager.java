@@ -256,7 +256,7 @@ public class MMM_TextureManager {
 					boolean lflag;
 					if (lf.isDirectory()) {
 						// ディレクトリ
-						lflag = addTexturesDir(lf, lst);
+						lflag = addTexturesDir(lf, lf, lst);
 					} else {
 						// zip
 						lflag = addTexturesZip(lf, lst);
@@ -616,19 +616,22 @@ public class MMM_TextureManager {
 	}
 	*/
 
-	protected boolean addTexturesDir(File file, String[] pSearch) {
+	protected boolean addTexturesDir(File baseFile, File file, String[] pSearch) {
 		// modsフォルダに突っ込んであるものも検索、再帰で。
-		if (file == null) {
+		if (baseFile == null || file == null) {
 			return false;
 		}
 		
 		try {
 			for (File t : file.listFiles()) {
 				if(t.isDirectory()) {
-					addTexturesDir(t, pSearch);
+					addTexturesDir(baseFile, t, pSearch);
 				} else {
 					if (t.getName().endsWith(".class")) {
-						addModelClass(t.getName(), pSearch);
+						String path = MMM_Helper.getRelativePathSimple(baseFile, t);
+						if (path != null) {
+							addModelClass(path, pSearch);
+						}
 					} else {
 						String s = t.getPath().replace('\\', '/');
 						int i = s.indexOf(pSearch[1]);
