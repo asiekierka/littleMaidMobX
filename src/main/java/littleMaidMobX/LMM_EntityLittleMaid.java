@@ -1187,6 +1187,9 @@ public class LMM_EntityLittleMaid extends EntityTameable implements ITextureEnti
 
 	public boolean canBePushed()
 	{
+		// See LittleMaidMobNX@93256b55c
+		if(isMaidWait()) return false;
+
 		// --------------------------------------------
 		// 肩車状態でプレイヤーが馬に乗っているときは、当たり判定をなくす。
 		if (ridingEntity != null && ridingEntity == mstatMasterEntity) {
@@ -2588,6 +2591,9 @@ public class LMM_EntityLittleMaid extends EntityTameable implements ITextureEnti
 									worldObj.setEntityState(this, (byte)12);
 								}
 								
+								return true;
+							} else if(itemstack1.getItem() == Items.stick) {
+								setDominantArm(maidDominantArm == 0 ? 1 : 0);
 								return true;
 							}
 						} else {
