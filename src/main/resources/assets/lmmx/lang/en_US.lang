@@ -24,7 +24,7 @@ littleMaidMob.mode.Playing=Playing
 littleMaidMob.mode.Pharmacist=Pharmacist
 littleMaidMob.mode.T-Pharmacist=T-Pharmacist
 littleMaidMob.mode.F-Pharmacist=F-Pharmacist
-littleMaidMob.mode.F-Pharmacist=D-Pharmacist
+littleMaidMob.mode.D-Pharmacist=D-Pharmacist
 
 littleMaidMob.mode.Healer=Healer
 littleMaidMob.mode.F-Healer=F-Healer

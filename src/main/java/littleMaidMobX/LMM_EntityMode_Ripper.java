@@ -90,7 +90,6 @@ public class LMM_EntityMode_Ripper extends LMM_EntityModeBase {
 
 		owner.addMaidMode(ltasks, "Ripper", mmode_Ripper);
 
-		
 		// TNT-D:0x00c1
 		EntityAITasks[] ltasks2 = new EntityAITasks[2];
 		ltasks2[0] = ltasks[0];
@@ -99,7 +98,6 @@ public class LMM_EntityMode_Ripper extends LMM_EntityModeBase {
 		ltasks2[1].addTask(2, new LMM_EntityAINearestAttackableTarget(owner, EntityTNTPrimed.class, 0, true));
 		
 		owner.addMaidMode(ltasks2, "TNT-D", mmode_TNTD);
-		
 		
 		// Detonator:0x00c2
 		EntityAITasks[] ltasks3 = new EntityAITasks[2];
@@ -158,8 +156,8 @@ public class LMM_EntityMode_Ripper extends LMM_EntityModeBase {
 					timeSinceIgnited = -1;
 					owner.setDead();
 					// Mobによる破壊の是非
-//					boolean lflag = owner.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
-//					owner.worldObj.createExplosion(owner, owner.posX, owner.posY, owner.posZ, 3F, lflag);
+					boolean lflag = owner.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
+					owner.worldObj.createExplosion(owner, owner.posX, owner.posY, owner.posZ, 3F, lflag);
 				}
 			}
 		}

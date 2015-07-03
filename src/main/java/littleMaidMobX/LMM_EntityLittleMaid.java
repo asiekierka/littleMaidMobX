@@ -246,13 +246,10 @@ public class LMM_EntityLittleMaid extends EntityTameable implements ITextureEnti
 		// 移動用フィジカル設定
 		getNavigator().setAvoidsWater(true);
 		getNavigator().setBreakDoors(true);
-		
-		
+
 		// TODO:これはテスト
 //		maidStabilizer.put("HeadTop", MMM_StabilizerManager.getStabilizer("WitchHat", "HeadTop"));
-		
-		
-		
+
 		// EntityModeの追加
 		maidEntityModeList = LMM_EntityModeManager.getModeList(this);
 		// モードリスト
@@ -566,11 +563,19 @@ public class LMM_EntityLittleMaid extends EntityTameable implements ITextureEnti
 	}
 	public static ArrayList<EntityAITaskEntry> getEntityAITasks_taskEntries(EntityAITasks task)
 	{
-		return (ArrayList<EntityAITaskEntry>)ObfuscationReflectionHelper.getPrivateValue(EntityAITasks.class, task, "field_75782_a", "taskEntries");
+		try {
+			return (ArrayList<EntityAITaskEntry>) ObfuscationReflectionHelper.getPrivateValue(EntityAITasks.class, task, "field_75782_a", "taskEntries");
+		} catch (Exception e) {
+			return null;
+		}
 	}
 	public static ArrayList<EntityAITaskEntry> getEntityAITasks_executingTaskEntries(EntityAITasks task)
 	{
-		return (ArrayList<EntityAITaskEntry>)ObfuscationReflectionHelper.getPrivateValue(EntityAITasks.class, task, "field_75780_b", "executingTaskEntries");
+		try {
+			return (ArrayList<EntityAITaskEntry>) ObfuscationReflectionHelper.getPrivateValue(EntityAITasks.class, task, "field_75780_b", "executingTaskEntries");
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	/**
@@ -613,10 +618,10 @@ public class LMM_EntityLittleMaid extends EntityTameable implements ITextureEnti
 			} else if (mstatTime < 12500) {
 				if (isContract()) {
 					BiomeGenBase biomegenbase = worldObj.getBiomeGenForCoords(MathHelper.floor_double(posX + 0.5D), MathHelper.floor_double(posZ + 0.5D));
-					float ltemp = biomegenbase.getFloatTemperature((int)this.posX, (int)this.posY, (int)this.posZ);
-					if (ltemp <= 0.15F) {
+					BiomeGenBase.TempCategory temperature = biomegenbase.getTempCategory();
+					if (temperature == BiomeGenBase.TempCategory.COLD) {
 						so = LMM_EnumSound.living_cold;
-					} else if (ltemp > 1.0F) {
+					} else if (temperature == BiomeGenBase.TempCategory.WARM) {
 						so = LMM_EnumSound.living_hot;
 					} else {
 						so = LMM_EnumSound.living_daytime;
@@ -2677,7 +2682,6 @@ public class LMM_EntityLittleMaid extends EntityTameable implements ITextureEnti
 		return isContract();
 	}
 	public boolean isContract() {
-//		return worldObj.isRemote ? maidContract : super.isTamed();
 		return super.isTamed();
 	}
 	public boolean isContractEX() {
@@ -2800,7 +2804,6 @@ public class LMM_EntityLittleMaid extends EntityTameable implements ITextureEnti
 		setMaidFlags(pflag, dataWatch_Flags_Wait);
 		
 		aiSit.setSitting(pflag);
-		maidWait = pflag;
 		isJumping = false;
 		setAttackTarget(null);
 		setRevengeTarget(null);
@@ -2812,7 +2815,6 @@ public class LMM_EntityLittleMaid extends EntityTameable implements ITextureEnti
 	public void setMaidWaitCount(int count) {
 		mstatWaitCount = count;
 	}
-
 	
 	// インベントリの表示関係
 	// まさぐれるのは一人だけ

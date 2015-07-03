@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.Random;
 
 import mmmlibx.lib.Client;
+import mmmlibx.lib.MMMLib;
 import mmmlibx.lib.gui.GuiButtonNextPage;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.gui.GuiButton;
@@ -86,7 +87,6 @@ public class LMM_GuiInventory extends GuiContainer {
 //				"littleMaidMob.text.AP"), 86, 32, 0x404040);
 		mc.fontRenderer.drawString(StatCollector.translateToLocal(
 				"littleMaidMob.text.STATUS"), 86, 8, 0x404040);
-		
 		mc.fontRenderer.drawString(StatCollector.translateToLocal(
 				"littleMaidMob.mode.".concat(entitylittlemaid.getMaidModeString())), 86, 61, 0x404040);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);

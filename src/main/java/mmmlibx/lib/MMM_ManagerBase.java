@@ -1,5 +1,9 @@
 package mmmlibx.lib;
 
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.discovery.ASMDataTable;
+import mmmlibx.lib.multiModel.MMMLoader.MMMModContainer;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.lang.reflect.Modifier;
@@ -41,6 +45,8 @@ public abstract class MMM_ManagerBase {
 				if (lname.indexOf(getPreFix()) >= 0 && lname.endsWith(".class")) {
 					loadClass(MMM_Helper.getRelativePathSimple(baseFile, lf));
 				}
+			} else if (lf.isDirectory()) {
+				decodeDirectory(baseFile, lf);
 			}
 		}
 	}

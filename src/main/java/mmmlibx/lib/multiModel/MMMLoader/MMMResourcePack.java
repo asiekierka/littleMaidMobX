@@ -27,9 +27,7 @@ import cpw.mods.fml.common.ModContainer;
  *
  */
 public class MMMResourcePack implements IResourcePack {
-
 	protected ModContainer ownerContainer;
-
 
 	public MMMResourcePack(ModContainer pContainer) {
 		ownerContainer = pContainer;
@@ -47,25 +45,22 @@ public class MMMResourcePack implements IResourcePack {
 	}
 
 	private InputStream getResourceStream(ResourceLocation resource, boolean b) {
-		String path = resource.getResourcePath();
-		InputStream lis = MMMResourcePack.class.getResourceAsStream(path);
-		if(resource.getResourceDomain().equalsIgnoreCase(LMM_LittleMaidMobX.DOMAIN))
-		{
-			if(lis==null)
-			{
+		if(resource.getResourceDomain().equalsIgnoreCase(LMM_LittleMaidMobX.DOMAIN)) {
+			String path = resource.getResourcePath();
+			InputStream lis = MMMResourcePack.class.getResourceAsStream("/assets/" + LMM_LittleMaidMobX.DOMAIN + "/" + path);
+
+			if (lis == null) {
 				lis = LMM_SoundManager.getResourceStream(resource);
 			}
 
 			MMMLib.Debug("getResource:"+b+":%s : %s", resource, lis);
 		}
-		return lis;
+		return null;
 	}
 
 	@Override
 	public boolean resourceExists(ResourceLocation par1ResourceLocation) {
 		InputStream is = getResourceStream(par1ResourceLocation, false);
-		
-		// TODO ★ このInputStream はクローズしなくていいの？
 		
 		return is != null;
 	}

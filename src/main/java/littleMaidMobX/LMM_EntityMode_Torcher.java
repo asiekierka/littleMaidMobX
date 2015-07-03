@@ -1,5 +1,6 @@
 package littleMaidMobX;
 
+import mmmlibx.lib.MMMLib;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialLiquid;
@@ -17,7 +18,6 @@ public class LMM_EntityMode_Torcher extends LMM_EntityModeBase {
 	
 	public static final int mmode_Torcher = 0x0020;
 
-
 	public LMM_EntityMode_Torcher(LMM_EntityLittleMaid pEntity) {
 		super(pEntity);
 	}
@@ -29,12 +29,6 @@ public class LMM_EntityMode_Torcher extends LMM_EntityModeBase {
 
 	@Override
 	public void init() {
-		/* langファイルに移動
-		ModLoader.addLocalization("littleMaidMob.mode.Torcher", "Torcher");
-		ModLoader.addLocalization("littleMaidMob.mode.F-Torcher", "F-Torcher");
-		ModLoader.addLocalization("littleMaidMob.mode.D-Torcher", "D-Torcher");
-		ModLoader.addLocalization("littleMaidMob.mode.T-Torcher", "T-Torcher");
-		*/
 		LMM_TriggerSelect.appendTriggerItem(null, "Torch", "");
 	}
 
@@ -103,7 +97,7 @@ public class LMM_EntityMode_Torcher extends LMM_EntityModeBase {
 
 	@Override
 	public boolean isSearchBlock() {
-		return true;
+		return !owner.isMaidWait();
 	}
 
 	@Override
@@ -111,12 +105,20 @@ public class LMM_EntityMode_Torcher extends LMM_EntityModeBase {
 		return !(owner.getCurrentEquippedItem() == null);
 	}
 
+	public static final int limitDistance_Freedom = 361;
+	public static final int limitDistance_Follow  = 100;
+
 	protected int getBlockLighting(int i, int j, int k) {
 		World worldObj = owner.worldObj;
-		if (worldObj.getBlock(i, j - 1, k).getMaterial().isSolid() && worldObj.getBlock(i, j, k) == Blocks.air) {
+		int dist = (int) owner.getDistanceSq(i, j, k);
+		if (dist > (owner.isFreedom() ? limitDistance_Freedom : limitDistance_Follow)) {
+			return 15;
+		}
+
+		if (worldObj.getBlock(i, j - 1, k).getMaterial().isSolid() && worldObj.isAirBlock(i, j, k)) {
 			return worldObj.getBlockLightValue(i, j, k);
 		}
-		return 32;
+		return 15;
 	}
 
 	@Override
@@ -133,15 +135,14 @@ public class LMM_EntityMode_Torcher extends LMM_EntityModeBase {
 
 	@Override
 	public boolean executeBlock(int pMode, int px, int py, int pz) {
-		/*
 		ItemStack lis = owner.getCurrentEquippedItem();
-		if (lis == null) return false;
+		if (lis == null /* || lis.getItem() != Item.getItemFromBlock(Blocks.torch) */) {
+			return false;
+		}
 		
 		int li = lis.stackSize;
-		// TODO:当たり判定をどうするか
 		if (lis.tryPlaceItemIntoWorld(owner.maidAvatar, owner.worldObj, px, py - 1, pz, 1, 0.5F, 1.0F, 0.5F)) {
 			owner.setSwing(10, LMM_EnumSound.installation);
-			
 			if (owner.maidAvatar.capabilities.isCreativeMode) {
 				lis.stackSize = li;
 			}
@@ -149,8 +150,9 @@ public class LMM_EntityMode_Torcher extends LMM_EntityModeBase {
 				owner.maidInventory.setInventoryCurrentSlotContents(null);
 				owner.getNextEquipItem();
 			}
+			return true;
 		}
-		*/
+
 		return false;
 	}
 
@@ -217,10 +219,6 @@ public class LMM_EntityMode_Torcher extends LMM_EntityModeBase {
 						if (ll > lv && lii instanceof ItemBlock &&
 								canPlaceItemBlockOnSide(lworld, lxx + x, lyi - 1, lzz + z, 1, owner.maidAvatar, lis, (ItemBlock)lii)
 								&& canBlockBeSeen(lxx + x, lyi - 1, lzz + z, true, false, true)) {
-//						if (ll > lv && lworld.getBlockMaterial(lxx + x, lyi - 1, lzz + z).isSolid()
-//								&& (lworld.getBlockMaterial(lxx + x, lyi, lzz + z) == Material.air
-//								|| lworld.getBlockId(lxx + x, lyi, lzz + z) == Block.snow.blockID)
-//								&& canBlockBeSeen(lxx + x, lyi - 1, lzz + z, true, false, true)) {
 							ll = lv;
 							ltx = lxx + x;
 							lty = lyi - 1;

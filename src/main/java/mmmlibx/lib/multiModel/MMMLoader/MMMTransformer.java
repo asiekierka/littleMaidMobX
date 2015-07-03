@@ -1,9 +1,11 @@
 package mmmlibx.lib.multiModel.MMMLoader;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import com.google.common.collect.Lists;
 import mmmlibx.lib.MMMLib;
@@ -21,7 +23,6 @@ import org.objectweb.asm.tree.*;
  *
  */
 public class MMMTransformer implements IClassTransformer, Opcodes {
-
 	private static String packege = "mmmlibx/lib/multiModel/model/mc162/";
 	@SuppressWarnings("serial")
 	private static final Map<String, String> targets = new HashMap<String, String>() {
@@ -57,7 +58,6 @@ public class MMMTransformer implements IClassTransformer, Opcodes {
 
 	public static boolean isEnable = false;
 	private boolean isChange;
-
 
 	public static void Debug(String pText, Object... pData) {
 		// デバッグメッセージ
