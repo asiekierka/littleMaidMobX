@@ -15,7 +15,7 @@ import net.minecraft.util.ResourceLocation;
 /**
  * テクスチャ管理用の変数群をまとめたもの。
  */
-public class MMM_TextureData  {
+public class MMM_TextureData {
 //public class MMM_TextureData implements MMM_ITextureEntity {
 
 	public EntityLivingBase owner;

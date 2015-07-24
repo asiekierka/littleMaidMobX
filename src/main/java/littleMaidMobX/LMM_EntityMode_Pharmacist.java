@@ -27,12 +27,6 @@ public class LMM_EntityMode_Pharmacist extends LMM_EntityModeBlockBase {
 
 	@Override
 	public void init() {
-		/* langファイルに移動
-		ModLoader.addLocalization("littleMaidMob.mode.Pharmacist", "Pharmacist");
-		ModLoader.addLocalization("littleMaidMob.mode.T-Pharmacist", "T-Pharmacist");
-		ModLoader.addLocalization("littleMaidMob.mode.F-Pharmacist", "F-Pharmacist");
-		ModLoader.addLocalization("littleMaidMob.mode.F-Pharmacist", "D-Pharmacist");
-		*/
 	}
 
 	@Override

@@ -28,21 +28,6 @@ public class LMM_EntityMode_Fencer extends LMM_EntityModeBase {
 
 	@Override
 	public void init() {
-		// 登録モードの名称追加
-		/* langファイルに移動
-		ModLoader.addLocalization("littleMaidMob.mode.Fencer", "Fencer");
-		ModLoader.addLocalization("littleMaidMob.mode.Fencer", "ja_JP", "護衛剣士");
-		ModLoader.addLocalization("littleMaidMob.mode.F-Fencer", "F-Fencer");
-		ModLoader.addLocalization("littleMaidMob.mode.F-Fencer", "ja_JP", "自由剣士");
-		ModLoader.addLocalization("littleMaidMob.mode.T-Fencer", "T-Fencer");
-		ModLoader.addLocalization("littleMaidMob.mode.D-Fencer", "D-Fencer");
-		ModLoader.addLocalization("littleMaidMob.mode.Bloodsucker", "Bloodsucker");
-		ModLoader.addLocalization("littleMaidMob.mode.Bloodsucker", "ja_JP", "血に飢えた冥土");
-		ModLoader.addLocalization("littleMaidMob.mode.F-Bloodsucker", "F-Bloodsucker");
-		ModLoader.addLocalization("littleMaidMob.mode.F-Bloodsucker", "ja_JP", "通魔冥土");
-		ModLoader.addLocalization("littleMaidMob.mode.T-Bloodsucker", "T-Bloodsucker");
-		ModLoader.addLocalization("littleMaidMob.mode.D-Bloodsucker", "D-Bloodsucker");
-		*/
 		LMM_TriggerSelect.appendTriggerItem(null, "Sword", "");
 		LMM_TriggerSelect.appendTriggerItem(null, "Axe", "");
 	}

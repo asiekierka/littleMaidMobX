@@ -195,9 +195,7 @@ public class LMM_LittleMaidMobX {
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent evt)
 	{
-		List<IResourcePack> defaultResourcePacks = ObfuscationReflectionHelper.getPrivateValue(Minecraft.class, Minecraft.getMinecraft(), "defaultResourcePacks", "field_110449_ao");
-		defaultResourcePacks.add(new LMM_OldZipTexturesLoader());
-
+		proxy.postInit();
 		// カンマ区切りのアイテム名のリストを配列にして設定
 		// "aaa, bbb,ccc  " -> "aaa" "bbb" "ccc"
 		ignoreItemList = cfg_IgnoreItemList.trim().split("\\s*,\\s*");

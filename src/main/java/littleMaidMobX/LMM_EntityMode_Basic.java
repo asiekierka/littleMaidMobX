@@ -45,23 +45,11 @@ public class LMM_EntityMode_Basic extends LMM_EntityModeBlockBase {
 
 	@Override
 	public int priority() {
-		// TODO Auto-generated method stub
 		return 9000;
 	}
 	
 	@Override
 	public void init() {
-		/* langファイルに移動
-		ModLoader.addLocalization("littleMaidMob.mode.Strike", "Strike");
-		ModLoader.addLocalization("littleMaidMob.mode.Wait", "Wait");
-		ModLoader.addLocalization("littleMaidMob.mode.Wild", "Wild");
-		ModLoader.addLocalization("littleMaidMob.mode.Wild", "ja_JP", "野生種");
-		ModLoader.addLocalization("littleMaidMob.mode.Escorter", "Escorter");
-		ModLoader.addLocalization("littleMaidMob.mode.Escorter", "ja_JP", "従者");
-		ModLoader.addLocalization("littleMaidMob.mode.F-Escorter", "Freedom");
-		ModLoader.addLocalization("littleMaidMob.mode.D-Escorter", "D-Escorter");
-		ModLoader.addLocalization("littleMaidMob.mode.T-Escorter", "Tracer");
-		*/
 	}
 
 	@Override

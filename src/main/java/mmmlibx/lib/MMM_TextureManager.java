@@ -537,7 +537,7 @@ public class MMM_TextureManager {
 					if (zipentry.getName().endsWith(".class")) {
 						addModelClass(zipentry.getName(), pSearch);
 					} else {
-						LMM_OldZipTexturesLoader.keys.put(zipentry.getName(), file);
+						MMMLib.proxy.addTextureToOldZipLoader(zipentry.getName(), file);
 						addTextureName(zipentry.getName(), pSearch);
 					}
 				}

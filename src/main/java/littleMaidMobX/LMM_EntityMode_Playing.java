@@ -38,12 +38,6 @@ public class LMM_EntityMode_Playing extends LMM_EntityModeBase {
 
 	@Override
 	public void init() {
-		/* langファイルに移動
-		ModLoader.addLocalization("littleMaidMob.mode.Playing", "Playing");
-		// ModLoader.addLocalization("littleMaidMob.mode.T-Playing", "Playing");
-		// ModLoader.addLocalization("littleMaidMob.mode.F-Playing", "Playing");
-		// ModLoader.addLocalization("littleMaidMob.mode.D-Playing", "Playing");
-		*/
 	}
 
 	@Override

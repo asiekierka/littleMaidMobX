@@ -30,19 +30,6 @@ public class LMM_EntityMode_Archer extends LMM_EntityModeBase {
 
 	@Override
 	public void init() {
-		// 登録モードの名称追加
-		/* langファイルに移動
-		ModLoader.addLocalization("littleMaidMob.mode.Archer", "Archer");
-		ModLoader.addLocalization("littleMaidMob.mode.F-Archer", "F-Archer");
-		ModLoader.addLocalization("littleMaidMob.mode.T-Archer", "T-Archer");
-		ModLoader.addLocalization("littleMaidMob.mode.D-Archer", "D-Archer");
-//		ModLoader.addLocalization("littleMaidMob.mode.Archer", "ja_JP", "射手");
-		ModLoader.addLocalization("littleMaidMob.mode.Blazingstar", "Blazingstar");
-		ModLoader.addLocalization("littleMaidMob.mode.F-Blazingstar", "F-Blazingstar");
-		ModLoader.addLocalization("littleMaidMob.mode.T-Blazingstar", "T-Blazingstar");
-		ModLoader.addLocalization("littleMaidMob.mode.D-Blazingstar", "D-Blazingstar");
-//		ModLoader.addLocalization("littleMaidMob.mode.Blazingstar", "ja_JP", "刃鳴散らす者");
-		*/
 		LMM_TriggerSelect.appendTriggerItem(null, "Bow", "");
 		LMM_TriggerSelect.appendTriggerItem(null, "Arrow", "");
 	}

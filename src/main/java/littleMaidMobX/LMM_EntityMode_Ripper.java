@@ -36,32 +36,10 @@ public class LMM_EntityMode_Ripper extends LMM_EntityModeBase {
 
 	@Override
 	public void init() {
-		// 登録モードの名称追加
-		/* langファイルに移動
-		ModLoader.addLocalization("littleMaidMob.mode.Ripper", "Ripper");
-		ModLoader.addLocalization("littleMaidMob.mode.F-Ripper", "F-Ripper");
-		ModLoader.addLocalization("littleMaidMob.mode.D-Ripper", "D-Ripper");
-		ModLoader.addLocalization("littleMaidMob.mode.T-Ripper", "T-Ripper");
-		ModLoader.addLocalization("littleMaidMob.mode.Ripper", "ja_JP", "毛狩り隊");
-		ModLoader.addLocalization("littleMaidMob.mode.F-Ripper", "ja_JP", "毛狩り隊");
-		ModLoader.addLocalization("littleMaidMob.mode.D-Ripper", "ja_JP", "毛狩り隊");
-		ModLoader.addLocalization("littleMaidMob.mode.T-Ripper", "ja_JP", "毛狩り隊");
-		ModLoader.addLocalization("littleMaidMob.mode.TNT-D", "TNT-D");
-		ModLoader.addLocalization("littleMaidMob.mode.F-TNT-D", "TNT-D");
-		ModLoader.addLocalization("littleMaidMob.mode.D-TNT-D", "TNT-D");
-		ModLoader.addLocalization("littleMaidMob.mode.T-TNT-D", "TNT-D");
-//		ModLoader.addLocalization("littleMaidMob.mode.TNT-D", "ja_JP", "TNT-D");
-		ModLoader.addLocalization("littleMaidMob.mode.Detonator", "Detonator");
-		ModLoader.addLocalization("littleMaidMob.mode.F-Detonator", "F-Detonator");
-		ModLoader.addLocalization("littleMaidMob.mode.D-Detonator", "D-Detonator");
-		ModLoader.addLocalization("littleMaidMob.mode.T-Detonator", "T-Detonator");
-		*/
 	}
 
 	@Override
 	public void addEntityMode(EntityAITasks pDefaultMove, EntityAITasks pDefaultTargeting) {
-
-		
 		// Ripper:0x0081
 		EntityAITasks[] ltasks = new EntityAITasks[2];
 		ltasks[0] = new EntityAITasks(owner.aiProfiler);

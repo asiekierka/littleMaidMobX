@@ -105,8 +105,8 @@ public class LMM_EntityMode_Torcher extends LMM_EntityModeBase {
 		return !(owner.getCurrentEquippedItem() == null);
 	}
 
-	public static final int limitDistance_Freedom = 361;
-	public static final int limitDistance_Follow  = 100;
+	public static final int limitDistance_Freedom = 20 * 20;
+	public static final int limitDistance_Follow  = 12 * 12;
 
 	protected int getBlockLighting(int i, int j, int k) {
 		World worldObj = owner.worldObj;

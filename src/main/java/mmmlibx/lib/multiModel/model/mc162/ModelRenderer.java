@@ -492,8 +492,6 @@ public class ModelRenderer {
 
 			GL11.glDisable(GL11.GL_CULL_FACE);
 		} else {
-			// アイテムに色付け
-//			pRender.loadTexture("/gui/items.png");
 			for (int j = 0; j <= (litem.requiresMultipleRenderPasses() ? 1 : 0); j++) {
 				int k = itemstack.getItem().getColorFromItemStack(itemstack, j);
 				float f15 = (float) (k >> 16 & 0xff) / 255F;

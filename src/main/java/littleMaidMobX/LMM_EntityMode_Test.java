@@ -30,7 +30,6 @@ public class LMM_EntityMode_Test extends LMM_EntityModeBase implements ICommand 
 	
 	@Override
 	public void init() {
-//		ModLoader.addCommand(this);
 	}
 
 	@Override

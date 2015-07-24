@@ -29,13 +29,6 @@ public class LMM_EntityMode_Healer extends LMM_EntityModeBase {
 
 	@Override
 	public void init() {
-		// 登録モードの名称追加
-		/* langファイルに移動
-		ModLoader.addLocalization("littleMaidMob.mode.Healer", "Healer");
-		ModLoader.addLocalization("littleMaidMob.mode.F-Healer", "F-Healer");
-		ModLoader.addLocalization("littleMaidMob.mode.T-Healer", "T-Healer");
-		ModLoader.addLocalization("littleMaidMob.mode.D-Healer", "D-Healer");
-		*/
 	}
 
 	@Override
