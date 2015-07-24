@@ -22,13 +22,12 @@ public class LMM_OldZipTexturesLoader implements IResourcePack {
 
 	@Override
 	public InputStream getInputStream(ResourceLocation arg0) throws IOException {
-		// TODO 自動生成されたメソッド・スタブ
 		if(resourceExists(arg0)){
 			String key = arg0.getResourcePath();
 			if(key.startsWith("/")) key = key.substring(1);
-			File zipFile = keys.get(key);
-			ZipFile t = new ZipFile(zipFile);
-			InputStream i = t.getInputStream(t.getEntry(key));
+			File file = new File(keys.get(key));
+			ZipFile zip = new ZipFile(file);
+			InputStream i = zip.getInputStream(zip.getEntry(key));
 			return i;
 		}
 		return null;
