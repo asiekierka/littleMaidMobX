@@ -527,6 +527,7 @@ public class MMM_TextureManager {
 			FileInputStream fileinputstream = new FileInputStream(file);
 			ZipInputStream zipinputstream = new ZipInputStream(fileinputstream);
 			ZipEntry zipentry;
+			MMMLib.Debug("Start searching %s", file.getName());
 			do {
 				zipentry = zipinputstream.getNextEntry();
 				if(zipentry == null)
@@ -537,8 +538,12 @@ public class MMM_TextureManager {
 					if (zipentry.getName().endsWith(".class")) {
 						addModelClass(zipentry.getName(), pSearch);
 					} else {
-						LMM_OldZipTexturesLoader.keys.put(zipentry.getName(), file);
+						String lt1 = "mob/littleMaid";
+						String lt2 = "mob/ModelMulti";
 						addTextureName(zipentry.getName(), pSearch);
+						if(FMLCommonHandler.instance().getSide()==Side.CLIENT&&
+								(zipentry.getName().startsWith(lt1)||zipentry.getName().startsWith(lt2)))
+							LMMX_OldZipTexturesLoader.keys.put(zipentry.getName(), file.getAbsolutePath());
 					}
 				}
 			} while(true);
